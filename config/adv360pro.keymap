@@ -6,11 +6,18 @@
 
 / {
     macros {
-        euro_macro: sz_macro {
+        sz_macro: sz_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(U)>;
+            bindings = <&kp LS(LC(U)) &kp KP_NUMBER_0 &kp KP_NUMBER_0 &kp D &kp F>;
             label = "SZ_MACRO";
+        };
+
+        euro_macro: euro_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(U)) &kp NUMBER_2 &kp KP_NUMBER_0 &kp A &kp C>;
+            label = "EURO_MACRO";
         };
     };
 
@@ -39,11 +46,11 @@
 
         fn {
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                                    &mo 3  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                                     &none  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &none           &trans  &trans    &trans  &trans          &none  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                          &trans    &trans                         &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans                  &trans  &trans  &trans    &trans  &trans  &trans                 &trans  &trans  &trans   &trans   &trans
+&kp F1  &kp F2  &kp F3     &kp F4       &kp F5  &kp F6  &tog 1                                                    &mo 3  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
+&trans  &trans  &trans     &euro_macro  &trans  &trans  &none                                                     &none  &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &sz_macro  &trans       &trans  &trans  &none           &trans  &trans    &trans  &trans          &none  &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans     &trans       &trans  &trans                          &trans    &trans                         &trans  &trans  &trans  &trans   &trans   &trans
+&trans  &trans  &trans     &trans       &trans                  &trans  &trans  &trans    &trans  &trans  &trans                 &trans  &trans  &trans   &trans   &trans
             >;
         };
 
